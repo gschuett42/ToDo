@@ -45,7 +45,7 @@ public class Priority {
             PreparedStatement statement = conn.getConnection().prepareStatement("SELECT * FROM gr3_Prioritaet");
             ResultSet results = statement.executeQuery();
             while(results.next()){
-                Priority tmp = new Priority(results.getInt("status_id"), results.getString("name"));
+                Priority tmp = new Priority(results.getString("name"), results.getInt("status_id"));
 
             }
         } catch (SQLException e) {

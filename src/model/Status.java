@@ -45,7 +45,7 @@ public class Status {
             PreparedStatement statement = conn.getConnection().prepareStatement("SELECT * FROM gr3_Status");
             ResultSet results = statement.executeQuery();
             while(results.next()){
-                Status tmp = new Status(results.getInt("status_id"), results.getString("name"));
+                Status tmp = new Status(results.getString("name"), results.getInt("status_id"));
 
             }
         } catch (SQLException e) {
