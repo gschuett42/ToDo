@@ -46,7 +46,7 @@ public class Priority {
             ResultSet results = statement.executeQuery();
             while(results.next()){
                 Priority tmp = new Priority(results.getString("name"), results.getInt("prioritaet_id"));
-
+                list.add(tmp);
             }
         } catch (SQLException e) {
             e.printStackTrace();

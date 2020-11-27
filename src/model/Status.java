@@ -46,7 +46,7 @@ public class Status {
             ResultSet results = statement.executeQuery();
             while(results.next()){
                 Status tmp = new Status(results.getString("name"), results.getInt("status_id"));
-
+                list.add(tmp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
