@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -14,5 +15,17 @@ public class StatusController {
         if(s != null){
             nameTextField.setText(s.getName());
         }
+    }
+
+    public void saveClicked(ActionEvent actionEvent) {
+    }
+
+    public void escapeClicked(ActionEvent actionEvent) {
+    }
+
+    public void newClicked(ActionEvent actionEvent) {
+    }
+
+    public void deleteClicked(ActionEvent actionEvent) {
     }
 }
