@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -16,5 +17,17 @@ public class PriorityController {
         if(p != null){
             nameTextField.setText(p.getName());
         }
+    }
+
+    public void cancelClicked(ActionEvent actionEvent) {
+    }
+
+    public void safeClicked(ActionEvent actionEvent) {
+    }
+
+    public void deleteClicked(ActionEvent actionEvent) {
+    }
+
+    public void newClicked(ActionEvent actionEvent) {
     }
 }
