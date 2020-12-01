@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import model.db.AbstractDatabase;
 import model.db.MySQLConnector;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,6 +38,7 @@ public class Status {
     public String toString() {
         return name;
     }
+
     public static ObservableList<Status> getList(){
         ObservableList<Status> list = FXCollections.observableArrayList();
 

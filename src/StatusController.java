@@ -1,8 +1,15 @@
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import model.Priority;
 import model.Status;
+
+import java.io.IOException;
 
 public class StatusController {
     public TextField nameTextField;
@@ -25,15 +32,25 @@ public class StatusController {
     }
 
     public void saveClicked(ActionEvent actionEvent) {
-        if (selectedItem != null) {
             //update existing one
-        } else {
-// insert new
-        }
+             // insert new
+            Status s = statusListView.getSelectionModel().getSelectedItem();
+            s.setName(nameTextField.getText());
     }
 
     public void escapeClicked(ActionEvent actionEvent) {
-        //close dialog
+        try {
+            //close existing
+
+            //get back by opening
+            Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+            Stage s = new Stage();
+            s.setTitle("hello world");
+            s.setScene(new Scene(root));
+            s.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void newClicked(ActionEvent actionEvent) {
@@ -45,6 +62,9 @@ public class StatusController {
     public void deleteClicked(ActionEvent actionEvent) {
         if (selectedItem != null) {
             //delete item
+            if (statusListView.getItems().contains(selectedItem)) {
+                statusListView.getItems().remove(selectedItem);
+            }
         }
     }
 }
