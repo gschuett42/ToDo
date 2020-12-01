@@ -1,9 +1,15 @@
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.Priority;
 import model.Status;
+
+import java.io.IOException;
 
 public class PriorityController {
     public TextField nameTextField;
@@ -21,21 +27,25 @@ public class PriorityController {
         }
     }
 
-    public void cancelClicked(ActionEvent actionEvent) {
-        //close dialog
+    public void saveClicked(ActionEvent actionEvent) {
+        //update existing one
+        // insert new
+        Priority p = priorityListView.getSelectionModel().getSelectedItem();
+        p.setName(nameTextField.getText());
     }
 
-    public void safeClicked(ActionEvent actionEvent) {
-        if(selectedItem !=null){
-            //update
-        }else{
-            //insert
-        }
-    }
+    public void escapeClicked(ActionEvent actionEvent) {
+        try {
+            //close existing
 
-    public void deleteClicked(ActionEvent actionEvent) {
-        if(selectedItem!=null){
-            //delete
+            //get back by opening
+            Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+            Stage s = new Stage();
+            s.setTitle("hello world");
+            s.setScene(new Scene(root));
+            s.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -43,5 +53,14 @@ public class PriorityController {
         selectedItem = null;
         nameTextField.clear();
         priorityListView.getSelectionModel().clearSelection();
+    }
+
+    public void deleteClicked(ActionEvent actionEvent) {
+        if (selectedItem != null) {
+            //delete item
+            if (priorityListView.getItems().contains(selectedItem)) {
+                priorityListView.getItems().remove(selectedItem);
+            }
+        }
     }
 }
