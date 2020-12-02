@@ -14,7 +14,7 @@ public class Status {
     private String name;
     private int id;
 
-    public Status(String name, int id) {
+    public Status( int id, String name) {
         this.name = name;
         this.id = id;
     }
@@ -42,17 +42,21 @@ public class Status {
     public static ObservableList<Status> getList(){
         ObservableList<Status> list = FXCollections.observableArrayList();
 
-        AbstractDatabase conn = new MySQLConnector("d0345762", " 5AHEL2021","rathgeb.at",3306,"d0345762");
+        AbstractDatabase conn = new MySQLConnector("d0345762","5AHEL2021","rathgeb.at",3306,"d0345762");
         try {
             PreparedStatement statement = conn.getConnection().prepareStatement("SELECT * FROM gr3_Status");
+
             ResultSet results = statement.executeQuery();
-            while(results.next()){
-                Status tmp = new Status(results.getString("name"), results.getInt("status_id"));
+
+            while (results.next()){
+                Status tmp = new Status(results.getInt("status_id"),results.getString("name"));
+
                 list.add(tmp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return list;
     }
 }

@@ -27,14 +27,22 @@ public class PriorityController {
         }
     }
 
-    public void saveClicked(ActionEvent actionEvent) {
-        //update existing one
-        // insert new
-        Priority p = priorityListView.getSelectionModel().getSelectedItem();
-        p.setName(nameTextField.getText());
+    public void newClicked(ActionEvent actionEvent) {
+        selectedItem = null;
+        nameTextField.clear();
+        priorityListView.getSelectionModel().clearSelection();
     }
 
-    public void escapeClicked(ActionEvent actionEvent) {
+    public void deleteClicked(ActionEvent actionEvent) {
+        if (selectedItem != null) {
+            //delete item
+            if (priorityListView.getItems().contains(selectedItem)) {
+                priorityListView.getItems().remove(selectedItem);
+            }
+        }
+    }
+
+    public void cancelClicked(ActionEvent actionEvent) {
         try {
             //close existing
 
@@ -49,18 +57,10 @@ public class PriorityController {
         }
     }
 
-    public void newClicked(ActionEvent actionEvent) {
-        selectedItem = null;
-        nameTextField.clear();
-        priorityListView.getSelectionModel().clearSelection();
-    }
-
-    public void deleteClicked(ActionEvent actionEvent) {
-        if (selectedItem != null) {
-            //delete item
-            if (priorityListView.getItems().contains(selectedItem)) {
-                priorityListView.getItems().remove(selectedItem);
-            }
-        }
+    public void saveClicked(ActionEvent actionEvent) {
+        //update existing one
+        // insert new
+        Priority p = priorityListView.getSelectionModel().getSelectedItem();
+        p.setName(nameTextField.getText());
     }
 }

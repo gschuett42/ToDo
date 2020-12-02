@@ -13,7 +13,7 @@ public class Priority {
     private String name;
     private int id;
 
-    public Priority(String name, int id) {
+    public Priority(int id, String name) {
         this.name = name;
         this.id = id;
     }
@@ -38,19 +38,25 @@ public class Priority {
     public String toString() {
         return name;
     }
-    public static ObservableList<Priority> getList(){
-    ObservableList<Priority> list = FXCollections.observableArrayList();
-        AbstractDatabase conn = new MySQLConnector("d0345762", " 5AHEL2021","rathgeb.at",3306,"d0345762");
+
+    public static ObservableList<Priority> getList() {
+        ObservableList<Priority> list = FXCollections.observableArrayList();
+
+        AbstractDatabase conn = new MySQLConnector("d0345762", "5AHEL2021", "rathgeb.at", 3306, "d0345762");
         try {
             PreparedStatement statement = conn.getConnection().prepareStatement("SELECT * FROM gr3_Prioritaet");
+
             ResultSet results = statement.executeQuery();
-            while(results.next()){
-                Priority tmp = new Priority(results.getString("name"), results.getInt("prioritaet_id"));
+
+            while (results.next()) {
+                Priority tmp = new Priority(results.getInt("prioritaet_id"), results.getString("name"));
+
                 list.add(tmp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return list;
     }
 }
