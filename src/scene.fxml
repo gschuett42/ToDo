@@ -5,19 +5,23 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Status">
+          <Menu mnemonicParsing="false" text="Daten">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#onStatusClicked" text="anzeigen/bearbeiten" />
                   <Menu mnemonicParsing="false" text="Priorität">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#onPriorityClicked" text="anzeigen/bearbeiten" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Status">
+                    <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onStatusClicked" text="anzeigen/bearbeiten" />
                     </items>
                   </Menu>
             </items>
