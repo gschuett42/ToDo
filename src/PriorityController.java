@@ -38,6 +38,8 @@ public class PriorityController {
             //delete item
             if (priorityListView.getItems().contains(selectedItem)) {
                 priorityListView.getItems().remove(selectedItem);
+                selectedItem = null;
+                nameTextField.clear();
             }
         }
     }
@@ -58,9 +60,17 @@ public class PriorityController {
     }
 
     public void saveClicked(ActionEvent actionEvent) {
-        //update existing one
-        // insert new
-        Priority p = priorityListView.getSelectionModel().getSelectedItem();
-        p.setName(nameTextField.getText());
+        if (selectedItem != null) {
+            selectedItem.setName(nameTextField.getText());
+        } else {
+            Priority p = new Priority(0, nameTextField.getText());
+
+            priorityListView.getItems().add(p);
+            priorityListView.getSelectionModel().selectLast();
+            selectedItem = p;
+            priorityListView.refresh();
+
+        }
     }
+
 }

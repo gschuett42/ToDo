@@ -32,10 +32,17 @@ public class StatusController {
     }
 
     public void saveClicked(ActionEvent actionEvent) {
-            //update existing one
-             // insert new
-            Status s = statusListView.getSelectionModel().getSelectedItem();
-            s.setName(nameTextField.getText());
+        if (selectedItem != null) {
+            selectedItem.setName(nameTextField.getText());
+        } else {
+            Status s = new Status(0, nameTextField.getText());
+
+            statusListView.getItems().add(s);
+            statusListView.getSelectionModel().selectLast();
+            selectedItem = s;
+            statusListView.refresh();
+
+        }
     }
 
     public void escapeClicked(ActionEvent actionEvent) {
@@ -64,6 +71,8 @@ public class StatusController {
             //delete item
             if (statusListView.getItems().contains(selectedItem)) {
                 statusListView.getItems().remove(selectedItem);
+                selectedItem = null;
+                nameTextField.clear();
             }
         }
     }
