@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Priority;
@@ -42,6 +43,31 @@ public class Controller {
             s.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    public void onToDoClicked(MouseEvent mouseEvent) {
+        ToDo selectedElement = todoListView.getSelectionModel().getSelectedItem();
+        if(selectedElement != null){
+            /*
+            Stelle die Daten des gewählten ToDos auf der rechten Seite dar
+             */
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("todo.fxml"));
+
+                Pane todoPane = loader.load();
+                loader.load();
+
+                ToDoController controller = (ToDoController) loader.getController();
+                controller.setToDo(selectedElement);
+                contentPane.getChildren().add(todoPane);
+
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
 
     }
