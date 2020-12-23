@@ -61,6 +61,7 @@ public class Controller {
 
                 ToDoController controller = (ToDoController) loader.getController();
                 controller.setToDo(selectedElement);
+                //controller.setToDoList(todoListView.getItems());
                 contentPane.getChildren().add(todoPane);
 
 

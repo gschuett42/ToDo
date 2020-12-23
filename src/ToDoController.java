@@ -1,3 +1,4 @@
+import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.Status;
@@ -9,22 +10,23 @@ public class ToDoController {
     public ComboBox statusComboBox;
     public ComboBox priorityComboBox;
     private ToDo selected = null;
+    private ObservableList <ToDo> todoList;
     public void setToDo(ToDo item){
         selected = item;
-        displayItem();
+       // displayItem();
     }
     private void displayItem(){
-        /**
-        Hier sollen die Daten vom "selected" angezeigt werden.
-         */statusComboBox.setItems(new Status().getList());
         int i = 0;
         nameTextField.setText(selected.getName());
         for(i = 0; i < statusComboBox.getItems().size();++i){
-            if(statusComboBox.getItems().get(i).getId()==selected.getStatus().getId()){
+            if(statusComboBox.getId()=selected.getStatus_id){
                 break;
             }
         }
         statusComboBox.getSelectionModel().select(i);
+    }
+    public void setToDoList(ObservableList<ToDo> list){
+        this.todoList = list;
     }
 
 }
